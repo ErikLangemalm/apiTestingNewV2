@@ -1,6 +1,7 @@
 // Importera Express för att kunna skapa en webbserver och Mongoose för att interagera med MongoDB-databasen.
 import express from "express"
 import mongoose from "mongoose"
+import books from "./api/books.js"
 
 // Skapar en instans av Express-appen, detta är vår webbserver.
 const server = express()
@@ -35,26 +36,8 @@ mongoose.connect("mongodb+srv://Lange6969:Tomten99@cluster0.4kh08gs.mongodb.net/
 
   OBS. Glöm inte ändra <password> !
 */
-
-// Skapar ett schema för "users", vilket definierar strukturen för varje "user"-dokument i databasen.
-const usersSchema = new mongoose.Schema({
-  username: String  // Varje "user" kommer att ha ett "username".
-});
-
-/* 
-  Skapar en Mongoose-modell baserat på usersSchema.
-  Detta tillåter oss att skapa, läsa, uppdatera, och ta bort (CRUD) dokument i vår "users"-collection.
-*/
-const User = mongoose.model('users', usersSchema);
-
-/*
-  Skapar en GET - route på '/api/users'. 
-  När denna route anropas, hämtar den alla dokument från vår "users"-collection och skickar tillbaka dem som en JSON-response.
-*/
-server.get('/api/users', async (req, res) => {
-  res.json(await User.find());  // Använder Mongoose's "find"-metod för att hämta alla "users".
-});
-
+console.log(typeof books)
+books(server, mongoose)
 /* 
   Startar servern så att den lyssnar på den definierade porten.
   När servern har startat, loggas ett meddelande till konsolen.
