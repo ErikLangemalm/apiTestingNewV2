@@ -1,7 +1,7 @@
 // Importera Express för att kunna skapa en webbserver och Mongoose för att interagera med MongoDB-databasen.
 import express from "express"
 import mongoose from "mongoose"
-import books from "./api/books.js"
+import apiregister from "./apiregister.js"
 
 // Skapar en instans av Express-appen, detta är vår webbserver.
 const server = express()
@@ -36,8 +36,7 @@ mongoose.connect("mongodb+srv://Lange6969:Tomten99@cluster0.4kh08gs.mongodb.net/
 
   OBS. Glöm inte ändra <password> !
 */
-console.log(typeof books)
-books(server, mongoose)
+apiregister(server, mongoose)
 /* 
   Startar servern så att den lyssnar på den definierade porten.
   När servern har startat, loggas ett meddelande till konsolen.

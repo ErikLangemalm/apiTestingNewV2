@@ -17,4 +17,8 @@ export default function books(server, mongoose) {
   server.get('/api/books', async (req, res) => {
     res.json(await Books.find());  // Använder Mongoose's "find"-metod för att hämta alla "users".
   });
+
+  server.post('/api/books', async (req, res) => {
+    res.json
+  });
 }
