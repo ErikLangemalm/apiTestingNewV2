@@ -19,6 +19,7 @@ export default function books(server, mongoose) {
   });
 
   server.post('/api/books', async (req, res) => {
-    res.json
+    console.log("hej")
+    response.json({ message: "hej" })
   });
 }
