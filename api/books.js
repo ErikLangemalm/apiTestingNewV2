@@ -1,7 +1,11 @@
 export default function books(server, mongoose) {
   // Skapar ett schema för "users", vilket definierar strukturen för varje "user"-dokument i databasen.
   const booksSchema = new mongoose.Schema({
-    bookname: String  // Varje "user" kommer att ha ett "username".
+    title: String,
+    author: String,
+    rating: Number,
+    published: String,
+    information: String
   });
 
   /* 
@@ -19,7 +23,22 @@ export default function books(server, mongoose) {
   });
 
   server.post('/api/books', async (req, res) => {
-    console.log("hej")
-    response.json({ message: "hej" })
+    try {
+      const { title, author, rating, published, information } = req.body;
+      const newBook = new Books({
+        title,
+        author,
+        rating,
+        published,
+        information
+      });
+      const savedBook = await newBook.save()
+      res.status(201).json(savedBook);
+      console.log("Du har lagt till en ny bok");
+    }
+    catch (err) {
+      console.error(err);
+      res.status(500).json({ err: 'There was a problem adding a book' })
+    }
   });
 }
