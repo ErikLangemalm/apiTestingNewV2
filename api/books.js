@@ -33,16 +33,46 @@ export default function books(server, mongoose) {
   });
 
   server.get('/api/books', async (req, res) => {
-
-    const { rating } = req.query
+    const { title, author, rating, published, information, genre } = req.query
     let filter
     if (rating) {
       filter = await Books.find({ rating: rating });
+    }
+    else if (title) {
+      filter = await Books.find({ title: title });
+    }
+    else if (author) {
+      filter = await Books.find({ author: author });
+    }
+    else if (published) {
+      filter = await Books.find({ published: published });
+    }
+    else if (information) {
+      filter = await Books.find({ information: information });
+    }
+    else if (genre) {
+      filter = await Books.find({ genre: genre });
     }
     else {
       filter = await Books.find()
     }
     res.json(filter)
-
   });
 }
+/*
+  server.get('/api/books', async (req, res) => {
+    let bookKeys = Object.keys(tableKeys)
+    const { rating } = req.query
+    let filter
+    if (rating) {
+      for (let i = 0; i < bookKeys.length; i++) {
+        let key = bookKeys[i]
+        filter = await Books.find({ key: rating });
+        if (filter.length > 0) {
+          break
+        }
+      }
+    }
+    else {
+      filter = await Books.find()
+*/
