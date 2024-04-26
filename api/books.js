@@ -33,7 +33,7 @@ export default function books(server, mongoose) {
   });
 
   server.get('/api/books', async (req, res) => {
-    const { title, author, rating, published, information, genre } = req.query
+    const { title, author, rating, published, information, genre, paginate, page } = req.query
     let filter
     if (rating) {
       filter = await Books.find({ rating: rating });
@@ -53,12 +53,28 @@ export default function books(server, mongoose) {
     else if (genre) {
       filter = await Books.find({ genre: genre });
     }
-    else {
-      filter = await Books.find()
+    else if (paginate) {
+      let skipper;
+      if (req.query.page) {
+        skipper = (req.query.page - 1) * paginate;
+      }
+      else {
+        skipper = 1;
+      }
+      filter = await Books.find().skip(skipper).limit(paginate);
     }
+    else {
+      filter = await Books.find();
+    }
+
+
     res.json(filter)
+
   });
+
 }
+
+
 /*
   server.get('/api/books', async (req, res) => {
     let bookKeys = Object.keys(tableKeys)
