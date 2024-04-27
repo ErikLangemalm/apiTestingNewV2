@@ -8,7 +8,7 @@ Min api använder sig av mongoose samt express för att generera scheman från
 ### Vad testar vi?
 
 
- ### Vad visar testerna på - finns det buggar/fel i produkten? 
+### Vad visar testerna på - finns det buggar/fel i produkten? 
 
 
 ### Saker vi inte hunnit testa

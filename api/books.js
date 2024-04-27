@@ -66,8 +66,6 @@ export default function books(server, mongoose) {
     else {
       filter = await Books.find();
     }
-
-
     res.json(filter)
 
   });
