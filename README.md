@@ -4,6 +4,7 @@
 APITESTING Använder sig av biblioteken Mongoose och Express samt så används MongoDB Compass som GUI för att hantera tabellerna.
 För att installera dependencies kör följande kommandon i terminalen.
 * npm i express mongoose
+* npm install express express-rate-limiter
 
 ### MongoDB Atlas
 
