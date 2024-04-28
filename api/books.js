@@ -59,7 +59,7 @@ export default function books(server, mongoose) {
         skipper = (req.query.page - 1) * paginate;
       }
       else {
-        skipper = 1;
+        skipper = 2;
       }
       filter = await Books.find().skip(skipper).limit(paginate);
     }
@@ -69,24 +69,4 @@ export default function books(server, mongoose) {
     res.json(filter)
 
   });
-
 }
-
-
-/*
-  server.get('/api/books', async (req, res) => {
-    let bookKeys = Object.keys(tableKeys)
-    const { rating } = req.query
-    let filter
-    if (rating) {
-      for (let i = 0; i < bookKeys.length; i++) {
-        let key = bookKeys[i]
-        filter = await Books.find({ key: rating });
-        if (filter.length > 0) {
-          break
-        }
-      }
-    }
-    else {
-      filter = await Books.find()
-*/

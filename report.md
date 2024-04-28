@@ -11,9 +11,9 @@ Min api använder sig av mongoose samt express för att generera scheman från
 
 ### Postman
 ## Vad testar vi?
+Postman testerna går ut på att testa olika GET anrop för att testa responskoder, filtrering
 
-
-## Vad visar testerna på - finns det buggar/fel i produkten? 
+## Vad visar testerna på - finns det buggar/fel i produkten?
 
 
 ### Övrigt angående uppgiften
