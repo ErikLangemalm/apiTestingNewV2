@@ -3,12 +3,12 @@ Mock datan som populerar min tabell är genererad av mockaroo.
 APIt använder sig av MongoDB atlas för att hosta ett cluster som innehåller tabellen books som i sin tur innehåller titel, författare, betyg, när boken släpptes och en kort sträng
 med information kring boken.
 
-Min api använder sig av mongoose samt express för att generera scheman från
+Min api använder sig av mongoose samt express för att generera scheman från en förbestämd objekt struktur som jag sedan använder för att antingen lägga upp nya objekt på MongoDB alternativt för filtrering på GET requesten.
 
 ### MongoDB Atlas
-APIt tar användning av MongoDB Atlas där clusteret hostar servern 
+APIt tar användning av MongoDB Atlas där clusteret hostar servern.
 ## Compass
-Compass används som GUI 
+Compass används som GUI för att hantera mitt cluster och server.
 ### Postman
 Postman testerna går ut på att testa olika GET anrop för att testa responskoder, filtrering samt paginering
 
@@ -18,6 +18,7 @@ Postman testerna går ut på att testa olika GET anrop för att testa responskod
 * Test 3: Testet verifierar att ett felaktigt GET request hanteras korrekt
 * Test 4: Testet verifierar att filtret fungerar korrekt och returnerar rätt mängd objekt
 * Test 5: Testet verifierar att rätt mängd objekt returneras när man paginerar
+* Test 6: Testet verifierar att UTF-8 tecken går att filtrera efter
 * Test 7: Verifierar att flera requests hanteras och går igenom
 * Test 10: Verifierar att anslutningen misslyckas vid ett felaktigt anrop till en tabell som inte finns längre
 * Test 13: Verifierar att efter en förbestämd mängd anrop(se apiLimiter i server.js) under en viss tid inte överskrids

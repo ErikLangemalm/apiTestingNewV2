@@ -13,7 +13,8 @@ export default function books(server, mongoose) {
 
   server.post('/api/books', async (req, res) => {
     try {
-      const { title, author, rating, published, information } = req.body;
+      console.log("1")
+      const { title, author, rating, published, information, genre } = req.body;
       const newBook = new Books({
         title,
         author,
@@ -22,9 +23,11 @@ export default function books(server, mongoose) {
         information,
         genre
       });
+      console.log("2")
       const savedBook = await newBook.save()
       res.status(201).json(savedBook);
       console.log("You have added a new book");
+      console.log("3")
     }
     catch (err) {
       console.error(err);
