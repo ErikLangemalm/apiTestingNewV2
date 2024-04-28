@@ -17,4 +17,7 @@ Servern hostas på MongoDB atlas via ett cluster som innehåller tabellen projek
 
 
 ### Postman
-Projektets Postman collection finner du via denna länken --insert länk--
+Projektets Postman collection finner du via länken på omniway.
+
+### Övrigt
+Github strulade vid en commit som den inte ville genomföra. Detta repot är en klon från det gamla repot innan felet uppstod.
