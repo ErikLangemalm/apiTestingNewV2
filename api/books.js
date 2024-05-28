@@ -36,6 +36,12 @@ export default function books(server, mongoose) {
 
   });
 
+  server.get('/api/disconnect', async (req, res) => {
+    // Simulate server disconnect by closing the connection abruptly
+    res.set('Connection', 'close');
+    res.status(500).send('Simulated server disconnect');
+  });
+
   server.get('/api/books', async (req, res) => {
     const { title, author, rating, published, information, genre, paginate, page } = req.query
     let filter
