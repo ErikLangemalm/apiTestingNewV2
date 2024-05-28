@@ -32,46 +32,53 @@ export default function books(server, mongoose) {
     }
   });
 
-  server.get('/api/disconnect', async (req, res) => {
-    res.set('Connection', 'close');
-    res.status(500).send('Simulated server disconnect');
-  });
-
   server.get('/api/books', async (req, res) => {
-    const { title, author, rating, published, information, genre, paginate, page } = req.query
-    let filter
-    if (rating) {
-      filter = await Books.find({ rating: rating });
-    }
-    else if (title) {
-      filter = await Books.find({ title: title });
-    }
-    else if (author) {
-      filter = await Books.find({ author: author });
-    }
-    else if (published) {
-      filter = await Books.find({ published: published });
-    }
-    else if (information) {
-      filter = await Books.find({ information: information });
-    }
-    else if (genre) {
-      filter = await Books.find({ genre: genre });
-    }
-    else if (paginate) {
-      let skipper;
-      if (req.query.page) {
-        skipper = (req.query.page - 1) * paginate;
+    try {
+      const { title, author, rating, published, information, genre, paginate, page } = req.query
+      let filter
+      if (rating) {
+        filter = await Books.find({ rating: rating });
+      }
+      else if (title) {
+        filter = await Books.find({ title: title });
+      }
+      else if (author) {
+        filter = await Books.find({ author: author });
+      }
+      else if (published) {
+        filter = await Books.find({ published: published });
+      }
+      else if (information) {
+        filter = await Books.find({ information: information });
+      }
+      else if (genre) {
+        filter = await Books.find({ genre: genre });
+      }
+      else if (paginate) {
+        let skipper;
+        if (req.query.page) {
+          skipper = (req.query.page - 1) * paginate;
+        }
+        else {
+          skipper = 1;
+        }
+        filter = await Books.find().skip(skipper).limit(paginate);
       }
       else {
-        skipper = 2;
+        filter = await Books.find();
       }
-      filter = await Books.find().skip(skipper).limit(paginate);
+      res.json(filter)
     }
-    else {
-      filter = await Books.find();
+    catch (err) {
+      console.error(err);
+      res.status(500).json({ err: 'There was a problem adding a book' })
     }
-    res.json(filter)
 
+  });
+
+  server.get('/api/disconnect', async (req, res) => {
+    console.log('Server has closed')
+    res.set('Connection', 'close');
+    res.status(500).send('Simulated server disconnect');
   });
 }
