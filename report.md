@@ -32,10 +32,10 @@ Postman testerna går ut på att testa olika GET anrop för att testa responskod
 * Test 5: Testet visar att paginering av datan delas upp utefter mängden objekt användaren sätter samt vilken av "sidorna" användaren vill de. Implementeringen av pagineringen har page numret förinställt till 1 om inget specifikt deklareras i filtret.
 * Test 6: Testet verifierar att det går att filtrera data baserat på UTF-8 karaktärer sim inte är inkluderat i standard UTF 
 * Test 7: Testet simulerar flera requests till books endpointen och är tänkt att verifiera att de anropen går igenom och behandlas.
-* Test 8:
-* Test 10:
-* Test 13:
-Testerna 1-13 visar att APIn returnerar rätt statuskoder vid anrop, att filtrering för specifika fält fungerar samt att flera requests hanteras och sedan nekas då en viss mängd requests har gjorts inom ett visst tidsintervall
+* Test 8: Syftet med testet är att verifiera att man kan anropa books, vilket är den enda endpointen som innehåller data(disconnect finns enbart för test 10) för både GET och POST funktionerna. När testerna körs så skickar postman ett anrop och verifieras sen via statuskoderna som returneras. 
+* Test 10: Testet anropar endpointen disconnect som existerar för att simulera när för många requests har gjorts och APIt inte är tillgängligt för stunden. Testet är tänkt att anropa den endpointen och verifiera att statuskoden är 500 vilket är en generell error respons.
+* Test 13: Syftet med rate limit testet är att verifiera att om antalet anrop till books som överstiger den tillåtna gränsen för anrop inom en viss tid (i detta fallet så är det enbart tillåtet för 100 requests under 15 minuter). Testet visar att 101 anrop inom det här tids intervallet hanteras och inga fler requests till books går igenom
+
 ## Tester som inte han genomföras
 Testerna 8 och 9 gick inte att genomföra då jag inte implementerade en PUT endpoint för mitt API.
 Sedan på grund utav tid så genomförde jag inte testerna 11 och 12.
