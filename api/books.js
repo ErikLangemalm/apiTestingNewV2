@@ -32,12 +32,7 @@ export default function books(server, mongoose) {
     }
   });
 
-  server.put('/api/books', async (req, res) => {
-
-  });
-
   server.get('/api/disconnect', async (req, res) => {
-    // Simulate server disconnect by closing the connection abruptly
     res.set('Connection', 'close');
     res.status(500).send('Simulated server disconnect');
   });
